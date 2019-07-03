@@ -1,6 +1,8 @@
-import React from 'react'
-// import * as BooksAPI from './BooksAPI'
-import './App.css'
+import React from 'react';
+import * as BooksAPI from './BooksAPI';
+import './App.css';
+import BookTitle from './components/BookTitle';
+import BookShelf from './components/BookShelf';
 
 class BooksApp extends React.Component {
   state = {
@@ -10,8 +12,25 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false
+    showSearchPage: false,
+    books: [
+      {
+        title: "",
+        authors: [""]
+      }
+    ]
   }
+
+  componentDidMount() {
+    BooksAPI.getAll()
+      .then((books) => {
+        this.setState(() => ({
+          books
+        }))
+      })
+  }
+
+
 
   render() {
     return (
@@ -39,9 +58,8 @@ class BooksApp extends React.Component {
           </div>
         ) : (
           <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
+            <BookTitle title={'MyReads'}/>
+            <BookShelf title={['Currently Reading', 'Want to Read', 'Read']} />
             <div className="list-books-content">
               <div>
                 <div className="bookshelf">
@@ -62,7 +80,9 @@ class BooksApp extends React.Component {
                               </select>
                             </div>
                           </div>
-                          <div className="book-title">To Kill a Mockingbird</div>
+                          {/* <div className="book-title">{this.state.books[0].title}</div> */}
+                          <div className="book-title">To Kill A Mockingbird</div>
+                          {/* <div className="book-authors">{this.state.books[0].authors[0]}</div> */}
                           <div className="book-authors">Harper Lee</div>
                         </div>
                       </li>

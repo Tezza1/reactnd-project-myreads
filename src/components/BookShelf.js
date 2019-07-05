@@ -2,7 +2,8 @@ import React from 'react';
 import Book from './Book'
 
 function BookShelf(props) {
-    return (
+  console.log(props.books)
+  return (
     <div className="list-books-content">
       <div>
         {props.title.map(t=>(

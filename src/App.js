@@ -18,7 +18,10 @@ class BooksApp extends React.Component {
         title: "",
         authors: [""]
       }
-    ]
+    ],
+    currentlyReading: [],
+    wantToRead: [],
+    read: []
   }
 
   componentDidMount() {
@@ -27,10 +30,35 @@ class BooksApp extends React.Component {
         this.setState(() => ({
           books
         }))
+
+        this.filterBooks()
       })
+
   }
 
 
+  filterBooks () {
+    
+    let currentlyReading= this.state.books.filter(book => {
+      return book.shelf === "currentlyReading"
+    })
+    let wantToRead = this.state.books.filter(book => {
+      return book.shelf === "wantToRead"
+    })
+    
+    let read = this.state.books.filter(book => {
+      return book.shelf === "read"
+    })
+
+    this.setState({
+      currentlyReading,
+      wantToRead,
+      read
+    })
+
+    console.log(this.state)
+
+  }
 
   render() {
     return (
@@ -59,7 +87,12 @@ class BooksApp extends React.Component {
         ) : (
           <div className="list-books">
             <BookTitle title={'MyReads'}/>
-            <BookShelf title={['Currently Reading', 'Want to Read', 'Read']} />
+            <BookShelf 
+              title={['Currently Reading', 'Want to Read', 'Read']}  
+              currentlyReading={this.state.currentlyReading} 
+              wantToRead={this.state.wantToRead}
+              read = {this.state.read}
+            />
             <div className="list-books-content">
               <div>
                 <div className="bookshelf">

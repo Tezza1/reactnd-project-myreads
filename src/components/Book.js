@@ -1,7 +1,7 @@
 import React from 'react';
 import BookChanger from './BookChanger';
 
-function Books(props){
+const Books = (props) => {
   return(
     <ol className="books-grid">
       {props.bookList.map(book =>(
@@ -12,7 +12,7 @@ function Books(props){
                 style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}
               ></div>
               <div className="book-shelf-changer">
-                  <BookChanger />
+                  <BookChanger book={book.id}/>
               </div>
             </div>
             <div className="book-title">{book.title}</div>

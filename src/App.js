@@ -1,43 +1,49 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
 import BookTitle from './components/BookTitle';
 import BookShelf from './components/BookShelf';
 
 class BooksApp extends React.Component {
-  state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-    /**
-     * TODO: proptypes
-    */
-   /**
-    *  TODO: react router for new page
-    */
-   /**
-    *  TODO: fix-up algorithm & make efficient
-    */
-   /**
-    *  TODO: change shelf with API call
-    */
-   /**
-    * TODO: search functionality
-    */
-    showSearchPage: false,
-    books: [
-      {
-        title: "",
-        authors: [""]
-      }
-    ],
-    currentlyReading: [],
-    wantToRead: [],
-    read: []
+
+  constructor(props){
+    super(props)
+    this.state = {
+      /**
+       * TODO: Instead of using this state variable to keep track of which page
+       * we're on, use the URL in the browser's address bar. This will ensure that
+       * users can use the browser's back and forward buttons to navigate between
+       * pages, as well as provide a good URL they can bookmark and share.
+       */
+      /**
+       * TODO: proptypes
+      */
+       /**
+      *  TODO: react router for new page
+      */
+       /**
+      *  TODO: fix-up algorithm & make efficient
+      */
+       /**
+      *  TODO: change shelf with API call
+      */
+       /**
+      * TODO: search functionality
+      */
+      showSearchPage: false,
+      books: [
+        {
+          title: "",
+          authors: [""]
+        }
+      ],
+      currentlyReading: [],
+      wantToRead: [],
+      read: []
+    }
   }
+
 
   componentDidMount() {
     BooksAPI.getAll()
@@ -53,14 +59,12 @@ class BooksApp extends React.Component {
 
 
   filterBooks () {
-
     let currentlyReading= this.state.books.filter(book => {
       return book.shelf === "currentlyReading"
     })
     let wantToRead = this.state.books.filter(book => {
       return book.shelf === "wantToRead"
     })
-
     let read = this.state.books.filter(book => {
       return book.shelf === "read"
     })
@@ -98,18 +102,20 @@ class BooksApp extends React.Component {
             </div>
           </div>
         ) : (
-          <div className="list-books">
-            <BookTitle title={'MyReads'}/>
-            <BookShelf
-              title={['Currently Reading', 'Want to Read', 'Read']}
-              currentlyReading={this.state.currentlyReading}
-              wantToRead={this.state.wantToRead}
-              read = {this.state.read}
-            />
-            <div className="open-search">
-              <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
+          <Route exact path="/" render={() => (
+            <div className="list-books">
+              <BookTitle title={'MyReads'}/>
+              <BookShelf
+                title={['Currently Reading', 'Want to Read', 'Read']}
+                currentlyReading={this.state.currentlyReading}
+                wantToRead={this.state.wantToRead}
+                read = {this.state.read}
+              />
             </div>
-          </div>
+          )} />
+            // <div className="open-search">
+              // <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
+            // </div>
         )}
       </div>
     )

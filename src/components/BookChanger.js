@@ -21,7 +21,6 @@ class BookChanger extends Component {
         }))
 
         console.log(book)
-
       })
   }
 

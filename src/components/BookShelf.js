@@ -3,7 +3,7 @@ import Book from './Book'
 
 const BookShelf = (props) => {
   return (
-    <div className="list-books-content">
+    <div className="list-books-content" data-test='component-bookshelf'>
       <div className="bookshelf" >
         <h2 className="bookshelf-title">{props.title[0]}</h2>
         <div className="bookshelf-books">

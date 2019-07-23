@@ -1,5 +1,6 @@
 import React from 'react';
 import BookChanger from './BookChanger';
+import PropTypes from 'prop-types';
 
 const Books = (props) => {
   return(
@@ -22,6 +23,10 @@ const Books = (props) => {
       ))}
     </ol>
   )
+}
+
+Books.propTypes = {
+  bookList: PropTypes.array.isRequired
 }
 
 export default Books;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const BookTitle = (props) => {
     return (
@@ -7,5 +8,11 @@ const BookTitle = (props) => {
         </div>
     )
 }
+
+BookTitle.propTypes = {
+ title: PropTypes.string.isRequired,
+}
+
+
 
 export default BookTitle;

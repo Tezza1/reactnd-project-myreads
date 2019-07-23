@@ -4,6 +4,7 @@ import * as BooksAPI from './BooksAPI';
 import './App.css';
 import BookTitle from './components/BookTitle';
 import BookShelf from './components/BookShelf';
+import SearchButton from './components/SearchButton';
 
 class BooksApp extends React.Component {
 
@@ -17,9 +18,6 @@ class BooksApp extends React.Component {
        * pages, as well as provide a good URL they can bookmark and share.
        */
       /**
-       * TODO: proptypes
-      */
-       /**
       *  TODO: react router for new page
       */
        /**
@@ -56,7 +54,6 @@ class BooksApp extends React.Component {
       })
 
   }
-
 
   filterBooks () {
     let currentlyReading= this.state.books.filter(book => {
@@ -111,11 +108,9 @@ class BooksApp extends React.Component {
                 wantToRead={this.state.wantToRead}
                 read = {this.state.read}
               />
+              <SearchButton />
             </div>
           )} />
-            // <div className="open-search">
-              // <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
-            // </div>
         )}
       </div>
     )

@@ -59,7 +59,6 @@ class SearchPage extends React.Component {
                 placeholder="Search by title or author"
                 onChange={e => this.handleChange(e)}
               />
-
             </div>
           </form>
         </div>

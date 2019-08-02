@@ -16,11 +16,7 @@ class BookChanger extends Component {
     let shelf = e.target.value
     BooksAPI.update(this.props.book, shelf)
       .then((book) => {
-        this.setState(() => ({
-          shelf: this.shelf
-        }))
 
-        console.log(book)
       })
   }
 

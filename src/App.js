@@ -15,9 +15,6 @@ class BooksApp extends React.Component {
        /**
       *  TODO: change shelf with API call
       */
-       /**
-      * TODO: search functionality
-      */
       books: [
         {
           title: "",

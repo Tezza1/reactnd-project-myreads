@@ -8,19 +8,19 @@ const BookShelf = (props) => {
       <div className="bookshelf" >
         <h2 className="bookshelf-title">{props.title[0]}</h2>
         <div className="bookshelf-books">
-          <Book bookList={props.currentlyReading}/>
+          <Book bookList={props.currentlyReading} updateBooks={props.updateBooks}/>
         </div>
       </div>
       <div className="bookshelf" >
         <h2 className="bookshelf-title">{props.title[1]}</h2>
         <div className="bookshelf-books">
-          <Book bookList={props.wantToRead}/>
+          <Book bookList={props.wantToRead} updateBooks={props.updateBooks}/>
         </div>
       </div>
       <div className="bookshelf" >
         <h2 className="bookshelf-title">{props.title[2]}</h2>
         <div className="bookshelf-books">
-          <Book bookList={props.read}/>
+          <Book bookList={props.read} updateBooks={props.updateBooks}/>
         </div>
       </div>
     </div>

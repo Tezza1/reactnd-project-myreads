@@ -16,7 +16,11 @@ class BookChanger extends Component {
     let shelf = e.target.value
     BooksAPI.update(this.props.book, shelf)
       .then((book) => {
+        this.setState({
+          shelf
+        })
 
+        this.props.updateBooks()
       })
   }
 
@@ -24,7 +28,7 @@ class BookChanger extends Component {
      return (
       <form onChange={this.handleChange}>
         <select>
-          <option value="move" disabled>Move to...</option>
+          <option>Move to...</option>
           <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>
           <option value="read">Read</option>

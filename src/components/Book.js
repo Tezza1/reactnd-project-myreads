@@ -18,7 +18,7 @@ const Books = (props) => {
                     ></div>
               }
               <div className="book-shelf-changer">
-                <BookChanger book={book.id}/>
+                <BookChanger book={book} updateBooks={props.updateBooks}/>
               </div>
             </div>
             <div className="book-title">{book.title}</div>
@@ -30,8 +30,8 @@ const Books = (props) => {
                 : ''
               }
             </div>
-        </div>
-      </li>
+          </div>
+        </li>
       ))}
     </ol>
   )

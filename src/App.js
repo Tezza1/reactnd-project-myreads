@@ -12,9 +12,6 @@ class BooksApp extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-       /**
-      *  TODO: change shelf with API call
-      */
       books: [
         {
           title: "",
@@ -25,19 +22,14 @@ class BooksApp extends React.Component {
       wantToRead: [],
       read: []
     }
+
+    this.filterBooks = this.filterBooks.bind(this)
+    this.updateBooks = this.updateBooks.bind(this)
   }
 
 
   componentDidMount() {
-    BooksAPI.getAll()
-      .then((books) => {
-        this.setState(() => ({
-          books
-        }))
-
-        this.filterBooks()
-      })
-
+    this.updateBooks()
   }
 
   filterBooks () {
@@ -59,22 +51,38 @@ class BooksApp extends React.Component {
 
   }
 
+  updateBooks () {
+    BooksAPI.getAll()
+    .then((books) => {
+      this.setState({
+        books
+      })
+
+      this.filterBooks()
+    })
+  }
+
   render() {
     return (
       <div className="app" data-test="component-app">
         <Route exact path="/" render={() => (
           <div className="list-books">
-            <BookTitle title={'MyReads'}/>
+            <BookTitle title={'MyReads'} />
             <BookShelf
               title={['Currently Reading', 'Want to Read', 'Read']}
               currentlyReading={this.state.currentlyReading}
               wantToRead={this.state.wantToRead}
               read = {this.state.read}
+              updateBooks={this.updateBooks}
             />
             <SearchButton />
           </div>
         )} />
-        <Route path="/search" component={SearchPage} />
+      {/*<Route path="/search" component={SearchPage} /> */}
+      <Route
+        path="/search"
+        render={(props) => (<SearchPage {...props} updateBooks={this.updateBooks} />)}
+      />
       </div>
     )
   }

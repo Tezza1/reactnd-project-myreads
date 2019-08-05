@@ -15,7 +15,7 @@ class SearchPage extends React.Component {
 
   handleChange = (e) => {
     this.setState({
-      searchTerm: e.target.value
+      searchTerm: e
     })
   }
 
@@ -35,14 +35,16 @@ class SearchPage extends React.Component {
           })
         }
       })
+
   }
+
 
   render() {
     return (
       <div className="search-books">
         <div className="search-books-bar">
           <Link to='/'>
-            <button className="close-search">Close</button>
+            <button className="close-search" onClick={this.props.updateBooks}>Close</button>
           </Link>
           <form onSubmit={this.handleSubmit}>
             <div className="search-books-input-wrapper">
@@ -57,7 +59,7 @@ class SearchPage extends React.Component {
               <input
                 type="text"
                 placeholder="Search by title or author"
-                onChange={e => this.handleChange(e)}
+                onChange={e => this.handleChange(e.target.value)}
               />
             </div>
           </form>

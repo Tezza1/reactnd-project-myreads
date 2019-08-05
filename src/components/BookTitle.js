@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const BookTitle = (props) => {
-    return (
-        <div className="list-books-title">
-            <h1>{props.title}</h1>
-        </div>
-    )
+  return (
+    <div className="list-books-title">
+      <h1>{props.title}</h1>
+    </div>
+  )
 }
 
 BookTitle.propTypes = {

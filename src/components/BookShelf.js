@@ -2,29 +2,41 @@ import React from 'react';
 import Book from './Book';
 import PropTypes from 'prop-types';
 
-const BookShelf = (props) => {
-  return (
-    <div className="list-books-content" data-test='component-bookshelf'>
-      <div className="bookshelf" >
-        <h2 className="bookshelf-title">{props.title[0]}</h2>
-        <div className="bookshelf-books">
-          <Book bookList={props.currentlyReading} updateBooks={props.updateBooks}/>
-        </div>
+class BookShelf extends React.Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      item: ''
+    }
+  }
+
+  bookListProps = (title) => {
+    if(title === 'Currently Reading'){
+      return this.props.currentlyReading
+    } else if (title === 'Want to Read') {
+      return this.props.wantToRead
+    } else if (title === 'Read') {
+      return this.props.read
+    } else {
+      console.log('Error with book props')
+    }
+  }
+
+  render(){
+    return (
+      <div className="list-books-content" data-test='component-bookshelf'>
+        {this.props.title.map(title => (
+          <div className="bookshelf" key={title}>
+            <h2 className="bookshelf-title">{title}</h2>
+            <div className="bookshelf-books">
+              <Book bookList={this.bookListProps(title)} updateBooks={this.props.updateBooks}/>
+            </div>
+          </div>
+        ))}
       </div>
-      <div className="bookshelf" >
-        <h2 className="bookshelf-title">{props.title[1]}</h2>
-        <div className="bookshelf-books">
-          <Book bookList={props.wantToRead} updateBooks={props.updateBooks}/>
-        </div>
-      </div>
-      <div className="bookshelf" >
-        <h2 className="bookshelf-title">{props.title[2]}</h2>
-        <div className="bookshelf-books">
-          <Book bookList={props.read} updateBooks={props.updateBooks}/>
-        </div>
-      </div>
-    </div>
     )
+  }
 }
 
 BookShelf.propTypes = {

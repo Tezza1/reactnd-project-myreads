@@ -10,7 +10,8 @@ class BookChanger extends Component {
       currentlyReading: "normal",
       wantToRead: "normal",
       read: "normal",
-      none: "normal"
+      none: "normal",
+      other: "normal"
     }
   }
 
@@ -27,8 +28,11 @@ class BookChanger extends Component {
       case 'read':
         shelf = 'read';
         break;
+      case 'none':
+        shelf = 'none';
+        break;
       default:
-        shelf = 'none'
+        shelf = 'other'
     }
 
     this.setState({
